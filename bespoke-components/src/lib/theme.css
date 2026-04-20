@@ -1,4 +1,4 @@
-@source "./components";
+@source './components';
 
 @theme {
 	/* Color mappings */
@@ -23,8 +23,7 @@
 	--color-ring: var(--ring);
 
 	/* Radius mappings */
-	--radius: var(--radius);
-	--radius-md: var(--radius); /* For button component usage */
+	--radius-md: var(--radius);
 }
 
 /* Orange primary theme – light mode */
@@ -44,8 +43,8 @@
 	--muted-foreground: var(--color-slate-500);
 	--accent: var(--color-slate-100);
 	--accent-foreground: var(--color-slate-900);
-	--destructive: var(--color-red-500);
-	--destructive-foreground: var(--color-red-50);
+	--destructive: var(--color-red-800);
+	--destructive-foreground: var(--color-white);
 	--border: var(--color-slate-200);
 	--input: var(--color-slate-200);
 	--ring: var(--color-slate-400);
@@ -67,9 +66,46 @@
 	--muted-foreground: var(--color-slate-400);
 	--accent: var(--color-slate-700);
 	--accent-foreground: var(--color-slate-50);
-	--destructive: var(--color-red-600);
-	--destructive-foreground: var(--color-red-50);
+	--destructive: var(--color-red-800);
+	--destructive-foreground: var(--color-white);
 	--border: var(--color-slate-600);
 	--input: var(--color-slate-600);
 	--ring: var(--color-slate-300);
+}
+
+@layer base {
+	h1 {
+		font-size: var(--text-5xl);
+		font-weight: var(--font-weight-bold);
+		line-height: var(--text-5xl--line-height);
+		margin-top: calc(var(--text-5xl) * var(--text-5xl--line-height) * 0.618);
+		margin-bottom: calc(var(--text-5xl) * var(--text-5xl--line-height) * 0.382);
+		color: var(--foreground);
+	}
+
+	h2 {
+		font-size: var(--text-4xl);
+		font-weight: var(--font-weight-semibold);
+		line-height: var(--text-4xl--line-height);
+		margin-top: calc(var(--text-4xl) * var(--text-4xl--line-height) * 0.618);
+		margin-bottom: calc(var(--text-4xl) * var(--text-4xl--line-height) * 0.382);
+		color: var(--foreground);
+	}
+
+	h3 {
+		font-size: var(--text-3xl);
+		font-weight: var(--font-weight-semibold);
+		line-height: var(--text-3xl--line-height);
+		margin-top: calc(var(--text-3xl) * var(--text-3xl--line-height) * 0.618);
+		margin-bottom: calc(var(--text-3xl) * var(--text-3xl--line-height) * 0.382);
+		color: var(--foreground);
+	}
+
+	p {
+		font-size: var(--text-base);
+		line-height: var(--text-base--line-height);
+		margin-top: calc(var(--text-base) * var(--text-base--line-height) * 0.618);
+		margin-bottom: calc(var(--text-base) * var(--text-base--line-height) * 0.382);
+		color: var(--foreground);
+	}
 }

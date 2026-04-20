@@ -8,7 +8,11 @@
 		"lucide-svelte": "^1.0.1"
 	},
 	"scripts": {
-		"dev": "vite dev",
+		"dev": "BESPOKE_SOURCE_ALIAS=true vite dev",
+		"dev:bg": "./scripts/dev-start.sh",
+		"dev:stop": "./scripts/dev-stop.sh",
+		"dev:status": "./scripts/dev-status.sh",
+		"dev:dist": "BESPOKE_SOURCE_ALIAS=false vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
 		"prepare": "playwright install && svelte-kit sync || echo ''",

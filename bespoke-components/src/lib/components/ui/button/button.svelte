@@ -1,5 +1,5 @@
 <script module>
-	import { cn } from '$lib/utils.js';
+	import { cn } from '../../../utils.js';
 	import { tv } from 'tailwind-variants';
 
 	export const buttonVariants = tv({
@@ -14,7 +14,7 @@
 				ghost:
 					'hover:bg-muted hover:text-foreground dark:hover:bg-muted/50 aria-expanded:bg-muted aria-expanded:text-foreground',
 				destructive:
-					'bg-destructive/10 hover:bg-destructive/20 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/20 text-destructive focus-visible:border-destructive/40 dark:hover:bg-destructive/30',
+					'bg-rose-600 hover:bg-rose-700 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-rose-600 text-destructive-foreground focus-visible:border-destructive/40 dark:hover:bg-rose-700',
 				link: 'text-primary underline-offset-4 hover:underline'
 			},
 			size: {

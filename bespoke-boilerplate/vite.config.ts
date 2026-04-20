@@ -3,8 +3,14 @@ import { defineConfig } from 'vitest/config';
 import { playwright } from '@vitest/browser-playwright';
 import { sveltekit } from '@sveltejs/kit/vite';
 
+const sourceAlias = process.env.BESPOKE_SOURCE_ALIAS === 'true';
+
 export default defineConfig({
 	plugins: [tailwindcss(), sveltekit()],
+	...(sourceAlias && {
+		server: { fs: { allow: ['..'] } },
+		optimizeDeps: { exclude: ['bespoke-components'] }
+	}),
 	test: {
 		expect: { requireAssertions: true },
 		projects: [
