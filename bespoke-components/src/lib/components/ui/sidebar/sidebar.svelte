@@ -21,12 +21,12 @@
 	data-slot="sidebar"
 	class={cn(
 		'fixed top-12 left-0 z-40 flex h-[calc(100vh-3rem)] flex-col overflow-hidden border-r border-border bg-background py-2 transition-all duration-200 ease-in-out',
-		collapsed ? 'w-14' : 'w-56',
+		collapsed ? 'w-18' : 'w-56',
 		className
 	)}
 	{...restProps}
 >
-	<nav class="flex flex-col gap-0.5 px-1">
+	<nav class="flex flex-col gap-0.5 px-3.5">
 		{#each sidebarItems as item}
 			<div class="group/item relative">
 				<a

@@ -6,7 +6,11 @@
 
 	let { children } = $props();
 
-	let collapsed = $state(false);
+	let collapsed = $state(true);
+  const toggleCollapsed = () => {
+    console.log("sidebar toggle")
+    collapsed = !collapsed
+  }
 
 	const sidebarItems = [
 		{ label: 'Home', icon: House, path: '/' },
@@ -15,8 +19,8 @@
 </script>
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
-<Navbar title="Bespoke" />
-<Sidebar {sidebarItems} bind:collapsed />
+<Navbar title="Bespoke" toggleSidebarCollapse={toggleCollapsed} sidebarCollapsed={collapsed}/>
+<Sidebar {sidebarItems} collapsed={collapsed}/>
 <PageContainer>
 	{@render children()}
 </PageContainer>
