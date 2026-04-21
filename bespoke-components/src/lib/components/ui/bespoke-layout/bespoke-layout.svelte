@@ -21,23 +21,27 @@
 	{@render navbarEnd?.()}
 {/snippet}
 
-<Navbar
-	{title}
-	sidebarCollapsed={collapsed}
-	toggleSidebarCollapse={toggleCollapsed}
-	children={navbarChildren}
-/>
-<Sidebar {sidebarItems} {collapsed} />
-{#if !collapsed}
-	<div
-		role="button"
-		tabindex="0"
-		aria-label="Close sidebar"
-		class="fixed inset-0 top-12 z-30 backdrop-blur-sm"
-		onclick={toggleCollapsed}
-		onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && toggleCollapsed()}
-	></div>
-{/if}
-<PageContainer>
-	{@render children?.()}
-</PageContainer>
+<div class="relative h-screen overflow-hidden">
+	<Navbar
+		{title}
+		sidebarCollapsed={collapsed}
+		toggleSidebarCollapse={toggleCollapsed}
+		children={navbarChildren}
+	/>
+	<Sidebar {sidebarItems} {collapsed} />
+	{#if !collapsed}
+		<div
+			role="button"
+			tabindex="0"
+			aria-label="Close sidebar"
+			class="absolute top-12 left-0 right-0 bottom-0 z-30 backdrop-blur-sm"
+			onclick={toggleCollapsed}
+			onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && toggleCollapsed()}
+		></div>
+	{/if}
+	<div class="absolute top-0 left-0 right-0 bottom-0 overflow-y-auto">
+		<PageContainer>
+			{@render children?.()}
+		</PageContainer>
+	</div>
+</div>

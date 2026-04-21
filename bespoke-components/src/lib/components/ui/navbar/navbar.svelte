@@ -15,7 +15,7 @@
 <nav
 	data-slot="navbar"
 	class={cn(
-		'fixed top-0 right-0 left-0 z-50 flex h-12 items-center gap-2 border-b border-border bg-background px-5 text-foreground',
+		'absolute top-0 left-0 right-0 z-50 flex h-12 items-center gap-2 border-b border-border bg-background px-5 text-foreground',
 		className
 	)}
 >
