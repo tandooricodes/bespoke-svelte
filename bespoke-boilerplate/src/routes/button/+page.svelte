@@ -99,7 +99,7 @@
 	</div>
 
 	<!-- Interactive Loading Example -->
-	<div class="mt-8 mb-6 rounded-lg border border-gray-200 bg-gray-50 p-6">
+	<div class="mt-8 mb-6 rounded-lg border border-gray-200 bg-gray-50 p-6 pt-0">
 		<h3>Interactive Example</h3>
 		<p class="text-gray-600">
 			Click the button below to simulate an async operation with loading state:
