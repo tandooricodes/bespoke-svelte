@@ -20,7 +20,7 @@
 <aside
 	data-slot="sidebar"
 	class={cn(
-		'absolute top-12 left-0 bottom-0 z-40 flex flex-col overflow-hidden border-r border-border bg-background py-2 transition-all duration-200 ease-in-out',
+		'absolute top-12 bottom-0 left-0 z-40 flex flex-col overflow-hidden border-r border-border bg-background py-2 transition-all duration-200 ease-in-out',
 		collapsed ? 'w-18 max-md:hidden' : 'w-56',
 		className
 	)}

@@ -34,12 +34,12 @@
 			role="button"
 			tabindex="0"
 			aria-label="Close sidebar"
-			class="absolute top-12 left-0 right-0 bottom-0 z-30 backdrop-blur-sm"
+			class="absolute top-12 right-0 bottom-0 left-0 z-30 backdrop-blur-sm"
 			onclick={toggleCollapsed}
 			onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && toggleCollapsed()}
 		></div>
 	{/if}
-	<div class="absolute top-0 left-0 right-0 bottom-0 overflow-y-auto">
+	<div class="absolute top-0 right-0 bottom-0 left-0 overflow-y-auto">
 		<PageContainer>
 			{@render children?.()}
 		</PageContainer>
