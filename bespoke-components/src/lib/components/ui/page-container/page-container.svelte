@@ -11,7 +11,7 @@
 
 <div
 	data-slot="page-container"
-	class={cn('container px-28 py-12 grid', className)}
+	class={cn('container px-7 py-12 md:px-28 grid', className)}
 	{...restProps}
 >
 	{@render children?.()}

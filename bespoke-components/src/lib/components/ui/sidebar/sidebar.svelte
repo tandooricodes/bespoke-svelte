@@ -21,7 +21,7 @@
 	data-slot="sidebar"
 	class={cn(
 		'fixed top-12 left-0 z-40 flex h-[calc(100vh-3rem)] flex-col overflow-hidden border-r border-border bg-background py-2 transition-all duration-200 ease-in-out',
-		collapsed ? 'w-18' : 'w-56',
+		collapsed ? 'w-18 max-md:hidden' : 'w-56',
 		className
 	)}
 	{...restProps}

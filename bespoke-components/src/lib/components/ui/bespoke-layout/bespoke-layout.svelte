@@ -29,8 +29,14 @@
 />
 <Sidebar {sidebarItems} {collapsed} />
 {#if !collapsed}
-	<!-- svelte-ignore a11y_click_events_have_key_events a11y_no_static_element_interactions -->
-	<div class="fixed inset-0 top-12 z-30 backdrop-blur-sm" onclick={toggleCollapsed}></div>
+	<div
+		role="button"
+		tabindex="0"
+		aria-label="Close sidebar"
+		class="fixed inset-0 top-12 z-30 backdrop-blur-sm"
+		onclick={toggleCollapsed}
+		onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && toggleCollapsed()}
+	></div>
 {/if}
 <PageContainer>
 	{@render children?.()}
