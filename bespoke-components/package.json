@@ -34,7 +34,8 @@
 		"./theme.css": "./dist/theme.css"
 	},
 	"peerDependencies": {
-		"svelte": "^5.0.0"
+		"svelte": "^5.0.0",
+    "@sveltejs/kit": "^2.57.0"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^2.0.4",

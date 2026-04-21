@@ -1,9 +1,13 @@
 <script>
 	import './layout.css';
-	import { Navbar } from '$lib/index.js';
+	import { BespokeLayout } from '$lib/index.js';
+	import { House } from 'lucide-svelte';
 
 	const { children } = $props();
+
+	const sidebarItems = [{ label: 'Home', icon: House, path: '/' }];
 </script>
 
-<Navbar title="Bespoke" />
-{@render children()}
+<BespokeLayout title="Bespoke" {sidebarItems}>
+	{@render children()}
+</BespokeLayout>

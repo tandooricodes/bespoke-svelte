@@ -12,8 +12,22 @@
 	let { sidebarItems, title = '', children, navbarEnd } = $props();
 
 	let collapsed = $state(true);
+	let maskVisible = $state(false);
+	/** @type {ReturnType<typeof setTimeout> | undefined} */
+	let pendingToggle;
+
 	const toggleCollapsed = () => {
-		collapsed = !collapsed;
+		if (pendingToggle !== undefined) {
+			clearTimeout(pendingToggle);
+			pendingToggle = undefined;
+		}
+		if (collapsed) {
+			maskVisible = true;
+			pendingToggle = setTimeout(() => { collapsed = false; pendingToggle = undefined; }, 150);
+		} else {
+			collapsed = true;
+			pendingToggle = setTimeout(() => { maskVisible = false; pendingToggle = undefined; }, 150);
+		}
 	};
 </script>
 
@@ -29,16 +43,17 @@
 		children={navbarChildren}
 	/>
 	<Sidebar {sidebarItems} {collapsed} />
-	{#if !collapsed}
-		<div
-			role="button"
-			tabindex="0"
-			aria-label="Close sidebar"
-			class="absolute top-12 right-0 bottom-0 left-0 z-30 backdrop-blur-sm"
-			onclick={toggleCollapsed}
-			onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && toggleCollapsed()}
-		></div>
-	{/if}
+	<div
+		role="button"
+		tabindex={maskVisible ? 0 : -1}
+		aria-label="Close sidebar"
+		aria-hidden={!maskVisible}
+		class="absolute top-12 right-0 bottom-0 left-0 z-30 backdrop-blur-sm transition-opacity duration-150 ease-in-out {maskVisible
+			? 'opacity-100 pointer-events-auto'
+			: 'opacity-0 pointer-events-none'}"
+		onclick={toggleCollapsed}
+		onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && toggleCollapsed()}
+	></div>
 	<div class="absolute top-0 right-0 bottom-0 left-0 overflow-y-auto">
 		<PageContainer>
 			{@render children?.()}
