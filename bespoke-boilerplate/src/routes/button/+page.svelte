@@ -19,9 +19,9 @@
 <div class="grid">
 	<h1>Button</h1>
 	<!-- Variants Section -->
-  
+
 	<h2>Variants</h2>
-	<div class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6 mb-6">
+	<div class="mb-6 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
 		<Button>Default</Button>
 		<Button variant="outline">Outline</Button>
 		<Button variant="secondary">Secondary</Button>
@@ -39,7 +39,7 @@
 		<Button>Default</Button>
 		<Button size="lg">Large</Button>
 	</div>
-	<div class="mt-4 flex flex-wrap items-center gap-4 mb-6">
+	<div class="mt-4 mb-6 flex flex-wrap items-center gap-4">
 		<Button size="icon-xs" aria-label="Extra small icon">
 			<ArrowUpRight />
 		</Button>
@@ -57,7 +57,7 @@
 	<!-- With Icons Section -->
 
 	<h2>With Icons</h2>
-	<div class="flex flex-wrap gap-4 mb-6">
+	<div class="mb-6 flex flex-wrap gap-4">
 		<Button>
 			<ArrowUpRight />
 			Button with Icon
@@ -74,7 +74,7 @@
 	<!-- Disabled State -->
 
 	<h2>Disabled State</h2>
-	<div class="flex flex-wrap gap-4 mb-6">
+	<div class="mb-6 flex flex-wrap gap-4">
 		<Button disabled>Disabled Default</Button>
 		<Button variant="outline" disabled>Disabled Outline</Button>
 		<Button variant="secondary" disabled>Disabled Secondary</Button>
@@ -91,7 +91,7 @@
 		<Button variant="destructive" loading>Loading Destructive</Button>
 		<Button variant="link" loading>Loading Link</Button>
 	</div>
-	<div class="mt-4 flex flex-wrap items-center gap-4 mb-6">
+	<div class="mt-4 mb-6 flex flex-wrap items-center gap-4">
 		<Button size="xs" loading>XS Loading</Button>
 		<Button size="sm" loading>Small Loading</Button>
 		<Button loading>Default Loading</Button>
@@ -99,7 +99,7 @@
 	</div>
 
 	<!-- Interactive Loading Example -->
-	<div class="mt-8 rounded-lg border border-gray-200 bg-gray-50 p-6 mb-6">
+	<div class="mt-8 mb-6 rounded-lg border border-gray-200 bg-gray-50 p-6">
 		<h3>Interactive Example</h3>
 		<p class="text-gray-600">
 			Click the button below to simulate an async operation with loading state:
@@ -133,7 +133,7 @@
 	<!-- Link Button -->
 
 	<h2>Link Button</h2>
-	<div class="flex flex-wrap gap-4 mb-6">
+	<div class="mb-6 flex flex-wrap gap-4">
 		<Button href="/">Button as Link</Button>
 		<Button variant="outline" href="/">Outline as Link</Button>
 	</div>
