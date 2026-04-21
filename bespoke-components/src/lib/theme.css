@@ -48,6 +48,7 @@
 	--border: var(--color-slate-200);
 	--input: var(--color-slate-200);
 	--ring: var(--color-slate-400);
+	--font-heading: "Times New Roman", Times, serif;
 }
 
 /* Orange primary theme – dark mode */
@@ -71,12 +72,14 @@
 	--border: var(--color-slate-600);
 	--input: var(--color-slate-600);
 	--ring: var(--color-slate-300);
+	--font-heading: "Times New Roman", Times, serif;
 }
 
 @layer base {
 	h1 {
 		font-size: var(--text-5xl);
 		font-weight: var(--font-weight-bold);
+		font-family: var(--font-heading);
 		line-height: var(--text-5xl--line-height);
 		margin-top: calc(var(--text-5xl) * var(--text-5xl--line-height) * 0.618);
 		margin-bottom: calc(var(--text-5xl) * var(--text-5xl--line-height) * 0.382);
@@ -86,6 +89,7 @@
 	h2 {
 		font-size: var(--text-4xl);
 		font-weight: var(--font-weight-semibold);
+		font-family: var(--font-heading);
 		line-height: var(--text-4xl--line-height);
 		margin-top: calc(var(--text-4xl) * var(--text-4xl--line-height) * 0.618);
 		margin-bottom: calc(var(--text-4xl) * var(--text-4xl--line-height) * 0.382);
@@ -95,6 +99,7 @@
 	h3 {
 		font-size: var(--text-3xl);
 		font-weight: var(--font-weight-semibold);
+		font-family: var(--font-heading);
 		line-height: var(--text-3xl--line-height);
 		margin-top: calc(var(--text-3xl) * var(--text-3xl--line-height) * 0.618);
 		margin-bottom: calc(var(--text-3xl) * var(--text-3xl--line-height) * 0.382);
