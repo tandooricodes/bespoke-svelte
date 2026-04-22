@@ -103,7 +103,7 @@
 		{/each}
 	</nav>
 
-	<div class="group/theme relative mt-auto px-3.5">
+	<div class="group/theme relative mt-auto p-3.5">
 		<DropdownMenu>
 			<DropdownMenuTrigger
 				class="flex h-10 w-full items-center gap-3 rounded-lg px-3 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"

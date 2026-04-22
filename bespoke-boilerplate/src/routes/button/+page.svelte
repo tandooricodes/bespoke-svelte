@@ -99,16 +99,16 @@
 	</div>
 
 	<!-- Interactive Loading Example -->
-	<div class="mt-8 mb-6 rounded-lg border border-gray-200 bg-gray-50 p-6 pt-0">
+	<div class="mt-8 mb-6 rounded-lg border border-border bg-muted p-6 pt-0">
 		<h3>Interactive Example</h3>
-		<p class="text-gray-600">
+		<p class="text-muted-foreground">
 			Click the button below to simulate an async operation with loading state:
 		</p>
 		<div class="flex flex-wrap items-center gap-4">
 			<Button onclick={simulateLoading} loading={isLoading}>
 				{loadingText}
 			</Button>
-			<div class="text-sm text-gray-500">
+			<div class="text-sm text-muted-foreground">
 				{#if isLoading}
 					<span class="flex items-center gap-2">
 						<span class="inline-block h-2 w-2 animate-pulse rounded-full bg-orange-500"></span>
@@ -119,12 +119,12 @@
 				{/if}
 			</div>
 		</div>
-		<div class="mt-4 text-sm text-gray-500">
+		<div class="mt-4 text-sm text-muted-foreground">
 			<p>When loading is true, the button:</p>
 			<ul class="mt-1 list-inside list-disc space-y-1">
 				<li>Shows a spinning loader icon</li>
 				<li>Is automatically disabled</li>
-				<li>Has <code class="rounded bg-gray-100 px-1 py-0.5">aria-busy="true"</code></li>
+				<li>Has <code class="rounded bg-background px-1 py-0.5 text-foreground">aria-busy="true"</code></li>
 				<li>Maintains its variant and size styling</li>
 			</ul>
 		</div>
