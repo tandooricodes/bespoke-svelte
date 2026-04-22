@@ -11,7 +11,9 @@
 	 * }} */
 	let { children, class: className, align = 'start', side = 'bottom', ...restProps } = $props();
 
-	const ctx = /** @type {{ open: boolean, toggle: () => void, close: () => void }} */ (getContext('dropdown'));
+	const ctx = /** @type {{ open: boolean, toggle: () => void, close: () => void }} */ (
+		getContext('dropdown')
+	);
 
 	const alignClass = { start: 'left-0', center: 'left-1/2 -translate-x-1/2', end: 'right-0' };
 	const sideClass = { bottom: 'top-full mt-1', top: 'bottom-full mb-1' };

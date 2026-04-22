@@ -24,10 +24,14 @@
 		}
 		if (collapsed) {
 			maskVisible = true;
-			pendingToggle = setTimeout(() => { collapsed = false; pendingToggle = undefined; }, 150);
+			collapsed = false;
+			pendingToggle = undefined;
 		} else {
 			collapsed = true;
-			pendingToggle = setTimeout(() => { maskVisible = false; pendingToggle = undefined; }, 150);
+			pendingToggle = setTimeout(() => {
+				maskVisible = false;
+				pendingToggle = undefined;
+			}, 150);
 		}
 	};
 </script>
@@ -50,9 +54,9 @@
 		tabindex={0}
 		aria-label="Close sidebar"
 		inert={!maskVisible || undefined}
-		class="absolute top-12 right-0 bottom-0 left-0 z-30 backdrop-blur-sm transition-opacity duration-150 ease-in-out {maskVisible
-			? 'opacity-100 pointer-events-auto'
-			: 'opacity-0 pointer-events-none'}"
+		class="absolute top-12 right-0 bottom-0 left-0 z-30 backdrop-blur-sm {maskVisible
+			? 'pointer-events-auto opacity-100'
+			: 'pointer-events-none opacity-0'}"
 		onclick={toggleCollapsed}
 		onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && toggleCollapsed()}
 	></div>

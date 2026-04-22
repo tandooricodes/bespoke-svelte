@@ -104,26 +104,25 @@
 	</nav>
 
 	<hr class="mt-auto border-t border-border" />
-	<div class="group/theme relative p-3.5">
+	<div class="group/theme relative p-3.5 md:pb-0">
 		<DropdownMenu>
 			<DropdownMenuTrigger
 				class="flex h-10 w-full items-center gap-3 rounded-lg px-3 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
 			>
 				{#if theme === 'dark'}
-					<Moon class="size-4 shrink-0" />
+					<Moon class="ml-0.5 size-4 shrink-0" />
 				{:else if theme === 'light'}
-					<Sun class="size-4 shrink-0" />
+					<Sun class="ml-0.5 size-4 shrink-0" />
 				{:else}
-					<MonitorSmartphone class="size-4 shrink-0" />
+					<MonitorSmartphone class="ml-0.5 size-4 shrink-0" />
 				{/if}
-				<span
-					class={cn(
-						'truncate text-sm font-medium transition-all duration-150',
-						collapsed ? 'w-0 overflow-hidden opacity-0' : 'opacity-100'
-					)}
-				>
-					{themeLabel}
-				</span>
+        {#if !collapsed}
+          <span
+					  class="truncate text-sm font-medium transition-all duration-150 opacity-100"
+				  >
+					  {themeLabel}
+				  </span>
+        {/if}
 			</DropdownMenuTrigger>
 			<DropdownMenuContent side="top" align="start" class="w-40">
 				<DropdownMenuLabel>Theme</DropdownMenuLabel>

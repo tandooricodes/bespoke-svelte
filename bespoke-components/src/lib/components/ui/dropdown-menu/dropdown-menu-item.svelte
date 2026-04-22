@@ -10,9 +10,18 @@
 	 *   onclick?: (e: MouseEvent) => void,
 	 *   [key: string]: any
 	 * }} */
-	let { children, class: className, inset = false, disabled = false, onclick, ...restProps } = $props();
+	let {
+		children,
+		class: className,
+		inset = false,
+		disabled = false,
+		onclick,
+		...restProps
+	} = $props();
 
-	const ctx = /** @type {{ open: boolean, toggle: () => void, close: () => void }} */ (getContext('dropdown'));
+	const ctx = /** @type {{ open: boolean, toggle: () => void, close: () => void }} */ (
+		getContext('dropdown')
+	);
 </script>
 
 <div
@@ -33,7 +42,7 @@
 		}
 	}}
 	class={cn(
-		'relative flex cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground',
+		'relative flex cursor-pointer items-center gap-2 rounded-sm px-2 py-1.5 text-sm transition-colors outline-none select-none hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
 		inset && 'pl-8',
 		disabled && 'pointer-events-none opacity-50',
 		className

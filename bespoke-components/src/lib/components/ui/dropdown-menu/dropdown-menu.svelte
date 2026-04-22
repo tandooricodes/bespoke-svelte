@@ -15,9 +15,15 @@
 	}
 
 	setContext('dropdown', {
-		get open() { return open; },
-		toggle() { open = !open; },
-		close() { open = false; }
+		get open() {
+			return open;
+		},
+		toggle() {
+			open = !open;
+		},
+		close() {
+			open = false;
+		}
 	});
 
 	/** @type {HTMLDivElement | undefined} */
