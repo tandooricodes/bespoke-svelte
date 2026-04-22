@@ -76,6 +76,12 @@
 }
 
 @layer base {
+	html,
+	body {
+		background-color: var(--background);
+		color: var(--foreground);
+	}
+
 	h1 {
 		font-size: var(--text-5xl);
 		font-weight: var(--font-weight-bold);

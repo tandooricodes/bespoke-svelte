@@ -5,6 +5,22 @@
 		<link rel="icon" href="%sveltekit.assets%/favicon.svg" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="text-scale" content="scale" />
+		<style>
+			html.dark {
+				--background: #0f172a;
+				--foreground: #f8fafc;
+				background-color: #0f172a;
+				color: #f8fafc;
+			}
+		</style>
+		<script>
+			(function () {
+				var t = localStorage.getItem('theme');
+				if (t === 'dark' || (t !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+					document.documentElement.classList.add('dark');
+				}
+			})();
+		</script>
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">

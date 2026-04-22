@@ -2,6 +2,7 @@
 	import Navbar from '../navbar/navbar.svelte';
 	import Sidebar from '../sidebar/sidebar.svelte';
 	import PageContainer from '../page-container/page-container.svelte';
+	import Loader from '../loader/loader.svelte';
 
 	/** @type {{
 	 *   sidebarItems: Array<{ label: string, icon: new (...args: any[]) => import('svelte').SvelteComponent, path: string }>,
@@ -35,6 +36,7 @@
 	{@render navbarEnd?.()}
 {/snippet}
 
+<Loader />
 <div class="relative h-screen overflow-hidden">
 	<Navbar
 		{title}
@@ -45,9 +47,9 @@
 	<Sidebar {sidebarItems} {collapsed} />
 	<div
 		role="button"
-		tabindex={maskVisible ? 0 : -1}
+		tabindex={0}
 		aria-label="Close sidebar"
-		aria-hidden={!maskVisible}
+		inert={!maskVisible || undefined}
 		class="absolute top-12 right-0 bottom-0 left-0 z-30 backdrop-blur-sm transition-opacity duration-150 ease-in-out {maskVisible
 			? 'opacity-100 pointer-events-auto'
 			: 'opacity-0 pointer-events-none'}"
