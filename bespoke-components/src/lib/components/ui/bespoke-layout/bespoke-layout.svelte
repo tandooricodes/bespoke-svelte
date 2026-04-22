@@ -56,7 +56,7 @@
 		onclick={toggleCollapsed}
 		onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && toggleCollapsed()}
 	></div>
-	<div class="absolute top-0 right-0 bottom-0 left-0 overflow-y-auto">
+	<div class="absolute top-12 right-0 bottom-0 left-0 overflow-y-auto">
 		<PageContainer>
 			{@render children?.()}
 		</PageContainer>
