@@ -1,0 +1,248 @@
+<script>
+	import { cn } from '../../../utils.js';
+	import { untrack } from 'svelte';
+	import {
+		Table,
+		TableHeader,
+		TableBody,
+		TableRow,
+		TableHead,
+		TableCell
+	} from '../table/index.js';
+	import DataTableToolbar from './data-table-toolbar.svelte';
+	import DataTablePagination from './data-table-pagination.svelte';
+	import { ArrowUp, ArrowDown, ArrowUpDown } from 'lucide-svelte';
+
+	/**
+	 * @typedef {{
+	 *   key: string,
+	 *   header?: string | import('svelte').Snippet,
+	 *   sortable?: boolean,
+	 *   cell?: import('svelte').Snippet<[{ value: any, row: any }]>
+	 * }} ColumnDef
+	 */
+
+	/** @type {{
+	 *   columns: ColumnDef[],
+	 *   data: Record<string, any>[],
+	 *   pageSize?: number,
+	 *   searchable?: boolean,
+	 *   selectable?: boolean,
+	 *   columnVisibility?: Record<string, boolean>,
+	 *   onSelectionChange?: (rows: Record<string, any>[]) => void,
+	 *   class?: string,
+	 *   toolbar?: import('svelte').Snippet,
+	 *   cell?: import('svelte').Snippet<[{ column: ColumnDef, row: Record<string, any>, value: any }]>,
+	 *   empty?: import('svelte').Snippet
+	 * }} */
+	let {
+		columns = [],
+		data = [],
+		pageSize: initialPageSize = 10,
+		searchable = true,
+		selectable = false,
+		columnVisibility = $bindable({}),
+		onSelectionChange,
+		class: className,
+		toolbar: toolbarSnippet,
+		cell: cellSnippet,
+		empty: emptySnippet,
+		...restProps
+	} = $props();
+
+	let sortKey = $state('');
+	let sortDir = $state(/** @type {'asc' | 'desc'} */ ('asc'));
+	let search = $state('');
+	let page = $state(1);
+	let pageSize = $state(untrack(() => initialPageSize));
+	let selectedRows = $state(/** @type {Set<Record<string, any>>} */ (new Set()));
+
+	$effect(() => {
+		// Reset to page 1 on filter/sort change
+		// eslint-disable-next-line no-unused-expressions
+		search;
+		// eslint-disable-next-line no-unused-expressions
+		sortKey;
+		page = 1;
+	});
+
+	const visibleColumns = $derived(
+		columns.filter((col) => columnVisibility[col.key] !== false)
+	);
+
+	const filteredData = $derived(
+		!search
+			? data
+			: data.filter((row) =>
+					visibleColumns.some((col) =>
+						String(row[col.key] ?? '').toLowerCase().includes(search.toLowerCase())
+					)
+				)
+	);
+
+	const sortedData = $derived(
+		!sortKey
+			? filteredData
+			: [...filteredData].sort((a, b) => {
+					const av = a[sortKey] ?? '';
+					const bv = b[sortKey] ?? '';
+					const cmp = String(av).localeCompare(String(bv), undefined, { numeric: true });
+					return sortDir === 'asc' ? cmp : -cmp;
+				})
+	);
+
+	const totalPages = $derived(Math.max(1, Math.ceil(sortedData.length / pageSize)));
+	const paginatedData = $derived(sortedData.slice((page - 1) * pageSize, page * pageSize));
+
+	const allSelected = $derived(sortedData.length > 0 && selectedRows.size === sortedData.length);
+	const someSelected = $derived(selectedRows.size > 0 && !allSelected);
+
+	/** @param {string} key */
+	function toggleSort(key) {
+		if (sortKey === key) {
+			sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+		} else {
+			sortKey = key;
+			sortDir = 'asc';
+		}
+	}
+
+	/** @param {Record<string, any>} row */
+	function toggleRow(row) {
+		const next = new Set(selectedRows);
+		if (next.has(row)) next.delete(row);
+		else next.add(row);
+		selectedRows = next;
+		onSelectionChange?.([...next]);
+	}
+
+	function toggleAll() {
+		if (allSelected) {
+			selectedRows = new Set();
+			onSelectionChange?.([]);
+		} else {
+			selectedRows = new Set(sortedData);
+			onSelectionChange?.([...sortedData]);
+		}
+	}
+
+	/** @param {HTMLInputElement} node */
+	function indeterminate(node) {
+		$effect(() => {
+			node.indeterminate = someSelected;
+		});
+	}
+</script>
+
+<div class={cn('w-full', className)} {...restProps}>
+	{#if searchable || toolbarSnippet}
+		<DataTableToolbar bind:search>
+			{#if toolbarSnippet}
+				{@render toolbarSnippet()}
+			{/if}
+		</DataTableToolbar>
+	{/if}
+
+	<Table>
+		<TableHeader>
+			<TableRow>
+				{#if selectable}
+					<TableHead class="w-10">
+						<input
+							use:indeterminate
+							type="checkbox"
+							checked={allSelected}
+							onchange={toggleAll}
+							class="size-4 cursor-pointer rounded border-border"
+							aria-label="Select all rows"
+						/>
+					</TableHead>
+				{/if}
+				{#each visibleColumns as col}
+					<TableHead>
+						{#if col.sortable !== false && col.key}
+							<button
+								class="flex items-center gap-1 transition-colors hover:text-foreground {sortKey === col.key ? 'text-foreground' : ''}"
+								onclick={() => toggleSort(col.key)}
+							>
+								{#if typeof col.header === 'string' || col.header === undefined}
+									{col.header ?? col.key}
+								{:else}
+									{@render col.header()}
+								{/if}
+								{#if sortKey === col.key && sortDir === 'asc'}
+									<ArrowUp class="size-3" />
+								{:else if sortKey === col.key && sortDir === 'desc'}
+									<ArrowDown class="size-3" />
+								{:else}
+									<ArrowUpDown class="size-3 opacity-40" />
+								{/if}
+							</button>
+						{:else if typeof col.header === 'string' || col.header === undefined}
+							{col.header ?? col.key}
+						{:else}
+							{@render col.header()}
+						{/if}
+					</TableHead>
+				{/each}
+			</TableRow>
+		</TableHeader>
+		<TableBody>
+			{#if paginatedData.length === 0}
+				<TableRow>
+					<TableCell
+						colspan={visibleColumns.length + (selectable ? 1 : 0)}
+						class="h-24 text-center text-muted-foreground"
+					>
+						{#if emptySnippet}
+							{@render emptySnippet()}
+						{:else}
+							No results.
+						{/if}
+					</TableCell>
+				</TableRow>
+			{:else}
+				{#each paginatedData as row}
+					{@const isSelected = selectedRows.has(row)}
+					<TableRow
+						class={isSelected ? 'bg-muted/50' : ''}
+						onclick={selectable ? () => toggleRow(row) : undefined}
+						style={selectable ? 'cursor: pointer' : undefined}
+					>
+						{#if selectable}
+							<TableCell class="w-10">
+								<input
+									type="checkbox"
+									checked={isSelected}
+									onchange={() => toggleRow(row)}
+									onclick={(e) => e.stopPropagation()}
+									class="size-4 cursor-pointer rounded border-border"
+									aria-label="Select row"
+								/>
+							</TableCell>
+						{/if}
+						{#each visibleColumns as col}
+							<TableCell>
+								{#if cellSnippet}
+									{@render cellSnippet({ column: col, row, value: row[col.key] })}
+								{:else if col.cell}
+									{@render col.cell({ row, value: row[col.key] })}
+								{:else}
+									{row[col.key] ?? ''}
+								{/if}
+							</TableCell>
+						{/each}
+					</TableRow>
+				{/each}
+			{/if}
+		</TableBody>
+	</Table>
+
+	<DataTablePagination
+		bind:page
+		bind:pageSize
+		totalPages={totalPages}
+		totalRows={sortedData.length}
+		selectedCount={selectedRows.size}
+	/>
+</div>

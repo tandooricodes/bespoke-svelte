@@ -42,3 +42,15 @@ export {
 	TableCell,
 	TableCaption
 } from './components/ui/table/index.js';
+export {
+	DataTable,
+	DataTableToolbar,
+	DataTablePagination,
+	DataTableColumnHeader
+} from './components/ui/data-table/index.js';
+export {
+	Accordion,
+	AccordionItem,
+	AccordionTrigger,
+	AccordionContent
+} from './components/ui/accordion/index.js';
