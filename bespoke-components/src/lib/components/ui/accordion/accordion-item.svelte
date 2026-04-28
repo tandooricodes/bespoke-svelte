@@ -12,8 +12,12 @@
 	let { value, disabled = false, children, class: className, ...restProps } = $props();
 
 	setContext('accordion-item', {
-		get value() { return value; },
-		get disabled() { return disabled; }
+		get value() {
+			return value;
+		},
+		get disabled() {
+			return disabled;
+		}
 	});
 </script>
 

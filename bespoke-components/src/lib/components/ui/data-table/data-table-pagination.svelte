@@ -48,7 +48,7 @@
 					}}
 					class="rounded border border-input bg-background px-2 py-1 text-sm"
 				>
-					{#each pageSizes as size}
+					{#each pageSizes as size (size)}
 						<option value={size}>{size}</option>
 					{/each}
 				</select>

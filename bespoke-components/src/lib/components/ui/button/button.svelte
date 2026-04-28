@@ -40,6 +40,8 @@
 
 <script>
 	import { Loader2 } from 'lucide-svelte';
+	import { resolve } from '$app/paths';
+	import { SvelteSet } from 'svelte/reactivity';
 
 	/**
 	 * @typedef {import('tailwind-variants').VariantProps<typeof buttonVariants>} BVariants
@@ -66,12 +68,27 @@
 		type = 'button',
 		disabled,
 		loading = false,
+		target = undefined,
+		rel = undefined,
 		children,
 		...restProps
 	} = $props();
 
-	// Combine disabled and loading states
 	const isDisabled = $derived(disabled || loading);
+
+	/** @param {string} h */
+	function isExternalUrl(h) {
+		return /^[a-z][a-z\d+\-.]*:/.test(h);
+	}
+
+	const safeRel = $derived.by(() => {
+		const parts = new SvelteSet(rel?.split(/\s+/).filter(Boolean) ?? []);
+		if (target === '_blank') {
+			parts.add('noopener');
+			parts.add('noreferrer');
+		}
+		return parts.size > 0 ? [...parts].join(' ') : undefined;
+	});
 </script>
 
 {#if href}
@@ -79,7 +96,9 @@
 		bind:this={ref}
 		data-slot="button"
 		class={cn(buttonVariants({ variant, size }), className)}
-		href={isDisabled ? undefined : href}
+		href={isDisabled ? undefined : isExternalUrl(href) ? href : resolve(href)}
+		{target}
+		rel={safeRel}
 		aria-disabled={isDisabled}
 		aria-busy={loading}
 		role={isDisabled ? 'link' : undefined}

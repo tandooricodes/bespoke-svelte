@@ -1,6 +1,7 @@
 <script>
 	import { cn } from '../../../utils.js';
 	import { page } from '$app/state';
+	import { resolve } from '$app/paths';
 	import { browser } from '$app/environment';
 	import { Sun, Moon, MonitorSmartphone } from 'lucide-svelte';
 	import DropdownMenu from '../dropdown-menu/dropdown-menu.svelte';
@@ -19,7 +20,11 @@
 	let { sidebarItems, collapsed = $bindable(false), class: className, ...restProps } = $props();
 
 	/** @type {'light' | 'dark' | 'system'} */
-	let theme = $state(/** @type {'light' | 'dark' | 'system'} */ (browser ? (localStorage.getItem('theme') ?? 'system') : 'system'));
+	let theme = $state(
+		/** @type {'light' | 'dark' | 'system'} */ (
+			browser ? (localStorage.getItem('theme') ?? 'system') : 'system'
+		)
+	);
 
 	/** @param {'light' | 'dark' | 'system'} t */
 	function applyTheme(t) {
@@ -71,10 +76,10 @@
 	{...restProps}
 >
 	<nav class="flex flex-col gap-2 px-3.5">
-		{#each sidebarItems as item}
+		{#each sidebarItems as item (item.path)}
 			<div class="group/item relative">
 				<a
-					href={item.path}
+					href={resolve(item.path)}
 					class={cn(
 						'flex h-10 items-center gap-3 rounded-lg px-3 transition-colors',
 						isActive(item.path)
@@ -116,13 +121,11 @@
 				{:else}
 					<MonitorSmartphone class="ml-0.5 size-4 shrink-0" />
 				{/if}
-        {#if !collapsed}
-          <span
-					  class="truncate text-sm font-medium transition-all duration-150 opacity-100"
-				  >
-					  {themeLabel}
-				  </span>
-        {/if}
+				{#if !collapsed}
+					<span class="truncate text-sm font-medium opacity-100 transition-all duration-150">
+						{themeLabel}
+					</span>
+				{/if}
 			</DropdownMenuTrigger>
 			<DropdownMenuContent side="top" align="start" class="w-40">
 				<DropdownMenuLabel>Theme</DropdownMenuLabel>

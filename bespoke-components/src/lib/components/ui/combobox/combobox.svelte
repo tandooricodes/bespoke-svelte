@@ -61,14 +61,30 @@
 	}
 
 	setContext('combobox', {
-		get open() { return open; },
-		get value() { return value; },
-		get selectedLabel() { return selectedLabel; },
-		get selectedItems() { return selectedItems; },
-		get filter() { return filter; },
-		get disabled() { return disabled; },
-		get multiple() { return multiple; },
-		get visibleCount() { return visibleItems.length; },
+		get open() {
+			return open;
+		},
+		get value() {
+			return value;
+		},
+		get selectedLabel() {
+			return selectedLabel;
+		},
+		get selectedItems() {
+			return selectedItems;
+		},
+		get filter() {
+			return filter;
+		},
+		get disabled() {
+			return disabled;
+		},
+		get multiple() {
+			return multiple;
+		},
+		get visibleCount() {
+			return visibleItems.length;
+		},
 		toggle() {
 			if (disabled) return;
 			open = !open;
@@ -79,7 +95,9 @@
 			filter = '';
 		},
 		/** @param {string} q */
-		setFilter(q) { filter = q; },
+		setFilter(q) {
+			filter = q;
+		},
 		/** @param {string} v @param {string} label */
 		selectItem(v, label) {
 			if (multiple) {

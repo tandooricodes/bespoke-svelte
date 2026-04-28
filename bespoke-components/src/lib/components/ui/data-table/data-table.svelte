@@ -1,14 +1,8 @@
 <script>
 	import { cn } from '../../../utils.js';
 	import { untrack } from 'svelte';
-	import {
-		Table,
-		TableHeader,
-		TableBody,
-		TableRow,
-		TableHead,
-		TableCell
-	} from '../table/index.js';
+	import { SvelteSet } from 'svelte/reactivity';
+	import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '../table/index.js';
 	import DataTableToolbar from './data-table-toolbar.svelte';
 	import DataTablePagination from './data-table-pagination.svelte';
 	import { ArrowUp, ArrowDown, ArrowUpDown } from 'lucide-svelte';
@@ -55,27 +49,25 @@
 	let search = $state('');
 	let page = $state(1);
 	let pageSize = $state(untrack(() => initialPageSize));
-	let selectedRows = $state(/** @type {Set<Record<string, any>>} */ (new Set()));
+	let selectedRows = $state(new SvelteSet());
 
 	$effect(() => {
 		// Reset to page 1 on filter/sort change
-		// eslint-disable-next-line no-unused-expressions
 		search;
-		// eslint-disable-next-line no-unused-expressions
 		sortKey;
 		page = 1;
 	});
 
-	const visibleColumns = $derived(
-		columns.filter((col) => columnVisibility[col.key] !== false)
-	);
+	const visibleColumns = $derived(columns.filter((col) => columnVisibility[col.key] !== false));
 
 	const filteredData = $derived(
 		!search
 			? data
 			: data.filter((row) =>
 					visibleColumns.some((col) =>
-						String(row[col.key] ?? '').toLowerCase().includes(search.toLowerCase())
+						String(row[col.key] ?? '')
+							.toLowerCase()
+							.includes(search.toLowerCase())
 					)
 				)
 	);
@@ -109,7 +101,7 @@
 
 	/** @param {Record<string, any>} row */
 	function toggleRow(row) {
-		const next = new Set(selectedRows);
+		const next = new SvelteSet(selectedRows);
 		if (next.has(row)) next.delete(row);
 		else next.add(row);
 		selectedRows = next;
@@ -118,10 +110,10 @@
 
 	function toggleAll() {
 		if (allSelected) {
-			selectedRows = new Set();
+			selectedRows = new SvelteSet();
 			onSelectionChange?.([]);
 		} else {
-			selectedRows = new Set(sortedData);
+			selectedRows = new SvelteSet(sortedData);
 			onSelectionChange?.([...sortedData]);
 		}
 	}
@@ -158,11 +150,14 @@
 						/>
 					</TableHead>
 				{/if}
-				{#each visibleColumns as col}
+				{#each visibleColumns as col (col.key)}
 					<TableHead>
 						{#if col.sortable !== false && col.key}
 							<button
-								class="flex items-center gap-1 transition-colors hover:text-foreground {sortKey === col.key ? 'text-foreground' : ''}"
+								class="flex items-center gap-1 transition-colors hover:text-foreground {sortKey ===
+								col.key
+									? 'text-foreground'
+									: ''}"
 								onclick={() => toggleSort(col.key)}
 							>
 								{#if typeof col.header === 'string' || col.header === undefined}
@@ -202,7 +197,7 @@
 					</TableCell>
 				</TableRow>
 			{:else}
-				{#each paginatedData as row}
+				{#each paginatedData as row (row)}
 					{@const isSelected = selectedRows.has(row)}
 					<TableRow
 						class={isSelected ? 'bg-muted/50' : ''}
@@ -221,7 +216,7 @@
 								/>
 							</TableCell>
 						{/if}
-						{#each visibleColumns as col}
+						{#each visibleColumns as col (col.key)}
 							<TableCell>
 								{#if cellSnippet}
 									{@render cellSnippet({ column: col, row, value: row[col.key] })}
@@ -241,7 +236,7 @@
 	<DataTablePagination
 		bind:page
 		bind:pageSize
-		totalPages={totalPages}
+		{totalPages}
 		totalRows={sortedData.length}
 		selectedCount={selectedRows.size}
 	/>

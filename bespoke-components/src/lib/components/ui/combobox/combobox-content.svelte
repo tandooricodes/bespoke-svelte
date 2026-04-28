@@ -30,7 +30,9 @@
 		)}
 		{...restProps}
 	>
-		<div class="flex items-center border-b border-border px-3 focus-within:outline-none focus-within:ring-0">
+		<div
+			class="flex items-center border-b border-border px-3 focus-within:ring-0 focus-within:outline-none"
+		>
 			<Search class="mr-2 size-4 shrink-0 opacity-50" />
 			<input
 				bind:this={inputEl}
@@ -41,10 +43,10 @@
 				value={ctx.filter}
 				oninput={(e) => ctx.setFilter(/** @type {HTMLInputElement} */ (e.target).value)}
 				{placeholder}
-				class="flex h-9 w-full border-0 bg-transparent py-2 text-sm outline-none ring-0 focus:border-0 focus:outline-none focus:ring-0 focus:[box-shadow:none] placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
+				class="flex h-9 w-full border-0 bg-transparent py-2 text-sm ring-0 outline-none placeholder:text-muted-foreground focus:border-0 focus:ring-0 focus:[box-shadow:none] focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
 			/>
 		</div>
-		<div class="max-h-60 overflow-y-auto overflow-x-hidden p-1">
+		<div class="max-h-60 overflow-x-hidden overflow-y-auto p-1">
 			{@render children?.()}
 		</div>
 	</div>

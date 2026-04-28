@@ -13,7 +13,7 @@
 		role="listbox"
 		onclick={(e) => e.stopPropagation()}
 		class={cn(
-			'absolute top-full z-50 mt-1 max-h-60 w-full overflow-y-auto overflow-x-hidden rounded-md border border-border bg-popover p-1 text-popover-foreground shadow-md',
+			'absolute top-full z-50 mt-1 max-h-60 w-full overflow-x-hidden overflow-y-auto rounded-md border border-border bg-popover p-1 text-popover-foreground shadow-md',
 			className
 		)}
 		{...restProps}

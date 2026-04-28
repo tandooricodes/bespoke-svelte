@@ -37,7 +37,13 @@
 		}
 	}
 
-	setContext('accordion', { get type() { return type; }, isOpen, toggle });
+	setContext('accordion', {
+		get type() {
+			return type;
+		},
+		isOpen,
+		toggle
+	});
 </script>
 
 <div class={cn('w-full p-2', className)} {...restProps}>

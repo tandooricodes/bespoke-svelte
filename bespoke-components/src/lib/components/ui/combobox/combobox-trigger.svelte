@@ -39,7 +39,7 @@
 			{#if ctx.selectedItems.length === 0}
 				<span class="text-muted-foreground">{placeholder}</span>
 			{:else}
-				{#each ctx.selectedItems as item}
+				{#each ctx.selectedItems as item (item.value)}
 					<span
 						class="inline-flex items-center gap-1 rounded bg-accent px-1.5 py-0.5 text-xs text-accent-foreground"
 					>
