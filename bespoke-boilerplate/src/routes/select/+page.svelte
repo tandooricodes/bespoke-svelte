@@ -133,7 +133,11 @@
 			<p>The Select component:</p>
 			<ul class="mt-1 list-inside list-disc space-y-1">
 				<li>Shows a checkmark next to the selected item</li>
-				<li>Closes on outside click or <code class="rounded bg-background px-1 py-0.5 text-foreground">Escape</code></li>
+				<li>
+					Closes on outside click or <code class="rounded bg-background px-1 py-0.5 text-foreground"
+						>Escape</code
+					>
+				</li>
 				<li>Supports groups with labels and separators</li>
 				<li>Supports disabled items and the entire select</li>
 			</ul>

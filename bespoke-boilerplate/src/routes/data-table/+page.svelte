@@ -1,34 +1,112 @@
 <script lang="ts">
-	import {
-		DataTable,
-		DataTableToolbar,
-		DataTablePagination,
-		DataTableColumnHeader,
-		Button
-	} from 'bespoke-components';
+	import { DataTable, Button } from 'bespoke-components';
 
 	// --- Basic demo data ---
 	const people = [
-		{ id: 1, name: 'Alice Johnson', email: 'alice@example.com', role: 'Admin', status: 'Active', joined: '2024-01-15' },
-		{ id: 2, name: 'Bob Smith', email: 'bob@example.com', role: 'Editor', status: 'Active', joined: '2024-02-03' },
-		{ id: 3, name: 'Carol White', email: 'carol@example.com', role: 'Viewer', status: 'Inactive', joined: '2024-03-20' },
-		{ id: 4, name: 'David Lee', email: 'david@example.com', role: 'Editor', status: 'Active', joined: '2024-04-01' },
-		{ id: 5, name: 'Eva Martinez', email: 'eva@example.com', role: 'Admin', status: 'Active', joined: '2024-04-18' },
-		{ id: 6, name: 'Frank Chen', email: 'frank@example.com', role: 'Viewer', status: 'Inactive', joined: '2024-05-10' },
-		{ id: 7, name: 'Grace Kim', email: 'grace@example.com', role: 'Editor', status: 'Active', joined: '2024-06-01' },
-		{ id: 8, name: 'Henry Brown', email: 'henry@example.com', role: 'Viewer', status: 'Active', joined: '2024-06-22' },
-		{ id: 9, name: 'Iris Patel', email: 'iris@example.com', role: 'Admin', status: 'Active', joined: '2024-07-04' },
-		{ id: 10, name: 'Jack Wilson', email: 'jack@example.com', role: 'Editor', status: 'Inactive', joined: '2024-07-19' },
-		{ id: 11, name: 'Karen Taylor', email: 'karen@example.com', role: 'Viewer', status: 'Active', joined: '2024-08-05' },
-		{ id: 12, name: 'Liam Davis', email: 'liam@example.com', role: 'Editor', status: 'Active', joined: '2024-08-30' }
+		{
+			id: 1,
+			name: 'Alice Johnson',
+			email: 'alice@example.com',
+			role: 'Admin',
+			status: 'Active',
+			joined: '2024-01-15'
+		},
+		{
+			id: 2,
+			name: 'Bob Smith',
+			email: 'bob@example.com',
+			role: 'Editor',
+			status: 'Active',
+			joined: '2024-02-03'
+		},
+		{
+			id: 3,
+			name: 'Carol White',
+			email: 'carol@example.com',
+			role: 'Viewer',
+			status: 'Inactive',
+			joined: '2024-03-20'
+		},
+		{
+			id: 4,
+			name: 'David Lee',
+			email: 'david@example.com',
+			role: 'Editor',
+			status: 'Active',
+			joined: '2024-04-01'
+		},
+		{
+			id: 5,
+			name: 'Eva Martinez',
+			email: 'eva@example.com',
+			role: 'Admin',
+			status: 'Active',
+			joined: '2024-04-18'
+		},
+		{
+			id: 6,
+			name: 'Frank Chen',
+			email: 'frank@example.com',
+			role: 'Viewer',
+			status: 'Inactive',
+			joined: '2024-05-10'
+		},
+		{
+			id: 7,
+			name: 'Grace Kim',
+			email: 'grace@example.com',
+			role: 'Editor',
+			status: 'Active',
+			joined: '2024-06-01'
+		},
+		{
+			id: 8,
+			name: 'Henry Brown',
+			email: 'henry@example.com',
+			role: 'Viewer',
+			status: 'Active',
+			joined: '2024-06-22'
+		},
+		{
+			id: 9,
+			name: 'Iris Patel',
+			email: 'iris@example.com',
+			role: 'Admin',
+			status: 'Active',
+			joined: '2024-07-04'
+		},
+		{
+			id: 10,
+			name: 'Jack Wilson',
+			email: 'jack@example.com',
+			role: 'Editor',
+			status: 'Inactive',
+			joined: '2024-07-19'
+		},
+		{
+			id: 11,
+			name: 'Karen Taylor',
+			email: 'karen@example.com',
+			role: 'Viewer',
+			status: 'Active',
+			joined: '2024-08-05'
+		},
+		{
+			id: 12,
+			name: 'Liam Davis',
+			email: 'liam@example.com',
+			role: 'Editor',
+			status: 'Active',
+			joined: '2024-08-30'
+		}
 	];
 
 	// --- Orders demo data ---
 	const orders = [
-		{ id: 'ORD-001', product: 'Laptop Pro 16"', amount: 2499.00, qty: 1, status: 'Shipped' },
+		{ id: 'ORD-001', product: 'Laptop Pro 16"', amount: 2499.0, qty: 1, status: 'Shipped' },
 		{ id: 'ORD-002', product: 'Wireless Mouse', amount: 49.99, qty: 3, status: 'Delivered' },
 		{ id: 'ORD-003', product: 'USB-C Hub', amount: 79.99, qty: 2, status: 'Processing' },
-		{ id: 'ORD-004', product: 'Monitor 27"', amount: 599.00, qty: 1, status: 'Shipped' },
+		{ id: 'ORD-004', product: 'Monitor 27"', amount: 599.0, qty: 1, status: 'Shipped' },
 		{ id: 'ORD-005', product: 'Mechanical Keyboard', amount: 149.99, qty: 1, status: 'Cancelled' },
 		{ id: 'ORD-006', product: 'Webcam HD', amount: 89.99, qty: 2, status: 'Delivered' },
 		{ id: 'ORD-007', product: 'Desk Mat XL', amount: 39.99, qty: 4, status: 'Processing' }
@@ -164,7 +242,8 @@
 		data={people}
 		pageSize={5}
 		selectable
-		onSelectionChange={(rows: Record<string, unknown>[]) => (selected = rows.map((r) => String(r.name)))}
+		onSelectionChange={(rows: Record<string, unknown>[]) =>
+			(selected = rows.map((r) => String(r.name)))}
 	/>
 	{#if selected.length > 0}
 		<p class="mt-2 text-sm text-muted-foreground">Selected: {selected.join(', ')}</p>
@@ -185,7 +264,7 @@
 	<DataTable columns={visibilityColumns} data={people} pageSize={5} bind:columnVisibility>
 		{#snippet toolbar()}
 			<div class="flex items-center gap-1">
-				{#each visibilityColumns as col}
+				{#each visibilityColumns as col (col.key)}
 					{@const visible = columnVisibility[col.key] !== false}
 					<button
 						onclick={() => (columnVisibility[col.key] = !visible)}
@@ -193,8 +272,7 @@
 							? 'border-primary bg-primary/10 text-primary'
 							: 'border-border bg-background text-muted-foreground hover:text-foreground'}"
 					>
-						<span
-							class="size-1.5 rounded-full {visible ? 'bg-primary' : 'bg-muted-foreground/50'}"
+						<span class="size-1.5 rounded-full {visible ? 'bg-primary' : 'bg-muted-foreground/50'}"
 						></span>
 						{col.header}
 					</button>

@@ -41,7 +41,7 @@
 		<Combobox bind:value={framework}>
 			<ComboboxTrigger placeholder="Select framework..." />
 			<ComboboxContent placeholder="Search framework...">
-				{#each frameworks as f}
+				{#each frameworks as f (f.value)}
 					<ComboboxItem value={f.value} label={f.label}>{f.label}</ComboboxItem>
 				{/each}
 				<ComboboxEmpty />
@@ -55,7 +55,7 @@
 		<Combobox bind:value={timezone}>
 			<ComboboxTrigger placeholder="Select timezone..." />
 			<ComboboxContent placeholder="Search timezone...">
-				{#each timezones as tz}
+				{#each timezones as tz (tz.value)}
 					<ComboboxItem value={tz.value} label={tz.label}>{tz.label}</ComboboxItem>
 				{/each}
 				<ComboboxEmpty />

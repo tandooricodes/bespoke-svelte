@@ -2,7 +2,16 @@
 	import './layout.css';
 	import favicon from '$lib/assets/favicon.svg';
 	import { BespokeLayout } from 'bespoke-components';
-	import { House, ArrowDown, ChevronDown, ListFilter, Search, Table2, LayoutList, ChevronsUpDown } from 'lucide-svelte';
+	import {
+		House,
+		ArrowDown,
+		ChevronDown,
+		ListFilter,
+		Search,
+		Table2,
+		LayoutList,
+		ChevronsUpDown
+	} from 'lucide-svelte';
 
 	let { children } = $props();
 

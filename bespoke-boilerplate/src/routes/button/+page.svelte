@@ -124,7 +124,10 @@
 			<ul class="mt-1 list-inside list-disc space-y-1">
 				<li>Shows a spinning loader icon</li>
 				<li>Is automatically disabled</li>
-				<li>Has <code class="rounded bg-background px-1 py-0.5 text-foreground">aria-busy="true"</code></li>
+				<li>
+					Has <code class="rounded bg-background px-1 py-0.5 text-foreground">aria-busy="true"</code
+					>
+				</li>
 				<li>Maintains its variant and size styling</li>
 			</ul>
 		</div>

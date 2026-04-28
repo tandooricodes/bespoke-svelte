@@ -8,7 +8,17 @@
 		DropdownMenuSeparator,
 		Button
 	} from 'bespoke-components';
-	import { User, Settings, LogOut, CreditCard, Bell, Pencil, Trash2, Copy, Share2 } from 'lucide-svelte';
+	import {
+		User,
+		Settings,
+		LogOut,
+		CreditCard,
+		Bell,
+		Pencil,
+		Trash2,
+		Copy,
+		Share2
+	} from 'lucide-svelte';
 
 	let lastAction = $state('');
 </script>

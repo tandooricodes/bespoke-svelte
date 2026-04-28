@@ -48,7 +48,7 @@
 				</TableRow>
 			</TableHeader>
 			<TableBody>
-				{#each invoices as inv}
+				{#each invoices as inv (inv.invoice)}
 					<TableRow>
 						<TableCell class="font-medium">{inv.invoice}</TableCell>
 						<TableCell>{inv.status}</TableCell>
@@ -73,7 +73,7 @@
 				</TableRow>
 			</TableHeader>
 			<TableBody>
-				{#each invoices as inv}
+				{#each invoices as inv (inv.invoice)}
 					<TableRow>
 						<TableCell class="font-medium">{inv.invoice}</TableCell>
 						<TableCell>{inv.status}</TableCell>
@@ -105,7 +105,7 @@
 				</TableRow>
 			</TableHeader>
 			<TableBody>
-				{#each invoices as inv}
+				{#each invoices as inv (inv.invoice)}
 					<TableRow>
 						<TableCell class="font-medium">{inv.invoice}</TableCell>
 						<TableCell class={statusClass[inv.status]}>{inv.status}</TableCell>
@@ -130,7 +130,7 @@
 				</TableRow>
 			</TableHeader>
 			<TableBody>
-				{#each users as user}
+				{#each users as user (user.email)}
 					<TableRow>
 						<TableCell>
 							<div class="flex items-center gap-3">
