@@ -11,7 +11,7 @@
 	 *   disabled?: boolean,
 	 *   [key: string]: any
 	 * }} */
-	let { children, class: className, value, label, disabled = false, ...restProps } = $props();
+	let { children, class: className = '', value, label, disabled = false, ...restProps } = $props();
 
 	const ctx = /** @type {{
 	 *   value: string | string[],

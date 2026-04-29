@@ -5,7 +5,9 @@
 	"type": "module",
 	"dependencies": {
 		"bespoke-components": "link:../bespoke-components",
-		"lucide-svelte": "^1.0.1"
+		"clsx": "^2.1.1",
+		"lucide-svelte": "^1.0.1",
+		"tailwind-merge": "^3.5.0"
 	},
 	"scripts": {
 		"dev": "BESPOKE_SOURCE_ALIAS=true vite dev",

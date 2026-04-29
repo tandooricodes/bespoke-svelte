@@ -9,7 +9,7 @@
 	 *   class?: string,
 	 *   [key: string]: any
 	 * }} */
-	let { value, disabled = false, children, class: className, ...restProps } = $props();
+	let { value, disabled = false, children, class: className = '', ...restProps } = $props();
 
 	setContext('accordion-item', {
 		get value() {

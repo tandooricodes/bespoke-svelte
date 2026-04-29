@@ -10,7 +10,21 @@
 		Search,
 		Table2,
 		LayoutList,
-		ChevronsUpDown
+		ChevronsUpDown,
+		TextCursorInput,
+		AlignLeft,
+		Tags,
+		CheckSquare,
+		ToggleLeft,
+		MessagesSquare,
+		PanelRight,
+		Info,
+		Square,
+		Shapes,
+		Bone,
+		PanelRightClose,
+		AlertTriangle,
+		Bell
 	} from 'lucide-svelte';
 
 	let { children } = $props();
@@ -23,7 +37,21 @@
 		{ label: 'Combobox', icon: Search, path: '/combobox' },
 		{ label: 'Table', icon: Table2, path: '/table' },
 		{ label: 'DataTable', icon: LayoutList, path: '/data-table' },
-		{ label: 'Accordion', icon: ChevronsUpDown, path: '/accordion' }
+		{ label: 'Accordion', icon: ChevronsUpDown, path: '/accordion' },
+		{ label: 'Input', icon: TextCursorInput, path: '/input' },
+		{ label: 'Textarea', icon: AlignLeft, path: '/textarea' },
+		{ label: 'Label', icon: Tags, path: '/label' },
+		{ label: 'Checkbox', icon: CheckSquare, path: '/checkbox' },
+		{ label: 'Switch', icon: ToggleLeft, path: '/switch' },
+		{ label: 'Dialog', icon: MessagesSquare, path: '/dialog' },
+		{ label: 'Popover', icon: PanelRight, path: '/popover' },
+		{ label: 'Tooltip', icon: Info, path: '/tooltip' },
+		{ label: 'Card', icon: Square, path: '/card' },
+		{ label: 'Badge', icon: Shapes, path: '/badge' },
+		{ label: 'Skeleton', icon: Bone, path: '/skeleton' },
+		{ label: 'Tabs', icon: PanelRightClose, path: '/tabs' },
+		{ label: 'Alert', icon: AlertTriangle, path: '/alert' },
+		{ label: 'Sonner', icon: Bell, path: '/sonner' }
 	];
 </script>
 

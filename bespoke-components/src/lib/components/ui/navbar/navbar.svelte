@@ -10,7 +10,7 @@
 	 *   toggleSidebarCollapse: () => void
 	 * }} */
 	let {
-		class: className,
+		class: className = '',
 		title = '',
 		children,
 		sidebarCollapsed,

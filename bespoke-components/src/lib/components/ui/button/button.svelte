@@ -40,7 +40,8 @@
 
 <script>
 	import { Loader2 } from 'lucide-svelte';
-	import { resolve } from '$app/paths';
+	import { resolve as _resolve } from '$app/paths';
+	const resolve = /** @type {(path: string) => string} */ (_resolve);
 	import { SvelteSet } from 'svelte/reactivity';
 
 	/**
@@ -60,7 +61,7 @@
 	 *   [key: string]: any
 	 * }} */
 	let {
-		class: className,
+		class: className = '',
 		variant = 'default',
 		size = 'default',
 		ref = $bindable(null),

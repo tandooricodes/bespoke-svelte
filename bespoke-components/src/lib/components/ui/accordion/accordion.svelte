@@ -15,7 +15,7 @@
 		value = $bindable(type === 'multiple' ? [] : ''),
 		collapsible = true,
 		children,
-		class: className,
+		class: className = '',
 		...restProps
 	} = $props();
 

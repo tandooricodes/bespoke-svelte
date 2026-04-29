@@ -7,7 +7,7 @@
 	 *   class?: string,
 	 *   [key: string]: any
 	 * }} */
-	let { children, class: className, ...restProps } = $props();
+	let { children, class: className = '', ...restProps } = $props();
 
 	const accordion = /** @type {{ isOpen: (v: string) => boolean }} */ (getContext('accordion'));
 	const item = /** @type {{ value: string }} */ (getContext('accordion-item'));

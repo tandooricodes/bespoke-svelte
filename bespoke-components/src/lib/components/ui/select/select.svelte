@@ -11,7 +11,7 @@
 	 * }} */
 	let {
 		children,
-		class: className,
+		class: className = '',
 		value = $bindable(''),
 		onValueChange,
 		disabled = false,

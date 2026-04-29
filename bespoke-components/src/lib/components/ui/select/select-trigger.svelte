@@ -4,7 +4,7 @@
 	import { ChevronDown } from 'lucide-svelte';
 
 	/** @type {{ children?: import('svelte').Snippet, class?: string, [key: string]: any }} */
-	let { children, class: className, ...restProps } = $props();
+	let { children, class: className = '', ...restProps } = $props();
 
 	const ctx = /** @type {{ open: boolean, disabled: boolean, toggle: () => void }} */ (
 		getContext('select')

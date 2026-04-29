@@ -17,7 +17,7 @@
 	 *   class?: string,
 	 *   [key: string]: any
 	 * }} */
-	let { sidebarItems, collapsed = $bindable(false), class: className, ...restProps } = $props();
+	let { sidebarItems, collapsed = $bindable(false), class: className = '', ...restProps } = $props();
 
 	/** @type {'light' | 'dark' | 'system'} */
 	let theme = $state(
@@ -75,11 +75,13 @@
 	)}
 	{...restProps}
 >
-	<nav class="flex flex-col gap-2 px-3.5">
+	<nav
+		class="flex min-h-0 flex-1 flex-col gap-2 overflow-y-auto px-3.5 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+	>
 		{#each sidebarItems as item (item.path)}
 			<div class="group/item relative">
 				<a
-					href={resolve(item.path)}
+					href={resolve(/** @type {any} */ (item.path))}
 					class={cn(
 						'flex h-10 items-center gap-3 rounded-lg px-3 transition-colors',
 						isActive(item.path)

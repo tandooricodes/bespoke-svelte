@@ -2,7 +2,7 @@
 	import { cn } from '../../../utils.js';
 
 	/** @type {{ children?: import('svelte').Snippet, class?: string, [key: string]: any }} */
-	let { children, class: className, ...restProps } = $props();
+	let { children, class: className = '', ...restProps } = $props();
 </script>
 
 <div class="relative w-full overflow-x-auto">

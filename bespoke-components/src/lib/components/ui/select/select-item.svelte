@@ -10,7 +10,7 @@
 	 *   disabled?: boolean,
 	 *   [key: string]: any
 	 * }} */
-	let { children, class: className, value, disabled = false, ...restProps } = $props();
+	let { children, class: className = '', value, disabled = false, ...restProps } = $props();
 
 	const ctx = /** @type {{ value: string, selectItem: (v: string, label: string) => void }} */ (
 		getContext('select')
@@ -35,13 +35,13 @@
 	tabindex={disabled ? -1 : 0}
 	onclick={() => {
 		if (disabled) return;
-		ctx.selectItem(value, getTextContent(itemEl));
+		ctx.selectItem(value, itemEl ? getTextContent(itemEl) : value);
 	}}
 	onkeydown={(e) => {
 		if (disabled) return;
 		if (e.key === 'Enter' || e.key === ' ') {
 			e.preventDefault();
-			ctx.selectItem(value, getTextContent(itemEl));
+			ctx.selectItem(value, itemEl ? getTextContent(itemEl) : value);
 		}
 	}}
 	class={cn(

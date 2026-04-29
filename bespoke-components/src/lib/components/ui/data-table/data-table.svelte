@@ -37,7 +37,7 @@
 		selectable = false,
 		columnVisibility = $bindable({}),
 		onSelectionChange,
-		class: className,
+		class: className = '',
 		toolbar: toolbarSnippet,
 		cell: cellSnippet,
 		empty: emptySnippet,

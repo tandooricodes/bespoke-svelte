@@ -2,7 +2,7 @@
 	import { getContext } from 'svelte';
 
 	/** @type {{ children?: import('svelte').Snippet, class?: string, [key: string]: any }} */
-	let { children, class: className, ...restProps } = $props();
+	let { children, class: className = '', ...restProps } = $props();
 
 	const ctx = /** @type {{ open: boolean, toggle: () => void, close: () => void }} */ (
 		getContext('dropdown')

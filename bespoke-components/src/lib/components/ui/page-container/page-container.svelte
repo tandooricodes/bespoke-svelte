@@ -6,7 +6,7 @@
 	 *   children?: import('svelte').Snippet,
 	 *   [key: string]: any
 	 * }} */
-	let { class: className, children, ...restProps } = $props();
+	let { class: className = '', children, ...restProps } = $props();
 </script>
 
 <div

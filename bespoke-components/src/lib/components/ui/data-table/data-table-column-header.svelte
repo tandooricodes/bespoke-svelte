@@ -17,7 +17,7 @@
 		columnKey = '',
 		sortDir = 'asc',
 		onSort,
-		class: className,
+		class: className = '',
 		children
 	} = $props();
 

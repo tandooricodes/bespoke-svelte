@@ -3,7 +3,7 @@
 	import { cn } from '../../../utils.js';
 
 	/** @type {{ placeholder?: string, class?: string, [key: string]: any }} */
-	let { placeholder = '', class: className, ...restProps } = $props();
+	let { placeholder = '', class: className = '', ...restProps } = $props();
 
 	const ctx = /** @type {{ selectedLabel: string }} */ (getContext('select'));
 </script>

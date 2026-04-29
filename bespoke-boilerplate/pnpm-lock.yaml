@@ -11,9 +11,15 @@ importers:
       bespoke-components:
         specifier: link:../bespoke-components
         version: link:../bespoke-components
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
       lucide-svelte:
         specifier: ^1.0.1
         version: 1.0.1(svelte@5.55.4(@typescript-eslint/types@8.58.2))
+      tailwind-merge:
+        specifier: ^3.5.0
+        version: 3.5.0
     devDependencies:
       '@eslint/compat':
         specifier: ^2.0.4
@@ -1414,6 +1420,9 @@ packages:
     resolution: {integrity: sha512-q8DFohk6vUswSng95IZb9nzWJnbINZsK7OiM1snAa3qCjJBL0ZQpvMyAaVXjUukdM75J/m8UE8xwqat8Ors/zQ==}
     engines: {node: '>=18'}
 
+  tailwind-merge@3.5.0:
+    resolution: {integrity: sha512-I8K9wewnVDkL1NTGoqWmVEIlUcB9gFriAEkXkfCjX5ib8ezGxtR3xD7iZIxrfArjEsH7F1CHD4RFUtxefdqV/A==}
+
   tailwindcss@4.2.2:
     resolution: {integrity: sha512-KWBIxs1Xb6NoLdMVqhbhgwZf2PGBpPEiwOqgI4pFIYbNTfBXiKYyWoTsXgBQ9WFg/OlhnvHaY+AEpW7wSmFo2Q==}
 
@@ -2785,6 +2794,8 @@ snapshots:
       zimmerframe: 1.1.4
     transitivePeerDependencies:
       - '@typescript-eslint/types'
+
+  tailwind-merge@3.5.0: {}
 
   tailwindcss@4.2.2: {}
 

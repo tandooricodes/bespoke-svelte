@@ -12,7 +12,7 @@
 	 * }} */
 	let {
 		children,
-		class: className,
+		class: className = '',
 		inset = false,
 		disabled = false,
 		onclick,
